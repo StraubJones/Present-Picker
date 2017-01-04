@@ -1,1 +1,30 @@
-<p>This is the picker view.</p>
+<div ng-controller="PickerCtrl">
+  <p>
+    {{greeting}} This is the picker view.
+  </p>
+  <ul>
+    <h3>Adjectives</h3>
+    <li ng-repeat="adj in allAdjectiveTypes">
+      <label>
+        {{adj.type}}
+        <input ng-change="toggleAdj(adj)" type="checkbox" name="adj.type" ng-model="adjective.chosen" />
+      </label>
+    </li>
+    <h3>Nouns</h3>
+    <li ng-repeat="noun in allNounTypes">
+      <label>
+        {{noun.type}}
+        <input ng-change="chooseNoun(noun)" type="radio" name="specNoun" ng-model="noun.chosen" value="noun.chosen" />
+      </label>
+    </li>
+  </ul>
+  <ul>
+    <h3>Search</h3>
+    <span ng-repeat="adj in activeAdjectiveTypes">
+        {{adj.current}}
+    </span>
+    <span>
+      {{activeNoun}}
+    </span>
+  </ul>
+</div>
