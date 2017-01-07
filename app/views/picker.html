@@ -1,21 +1,45 @@
 <div ng-controller="PickerCtrl">
   <p>
-    {{greeting}} This is the picker view.
+    {{greeting}}! Choose some adjectives and a type of gift you'd like to search for.
   </p>
   <ul>
     <h3>Adjectives</h3>
     <li ng-repeat="adj in allAdjectiveTypes">
       <label>
-        {{adj.type}}
-        <input ng-change="toggleAdj(adj)" type="checkbox" name="adj.type" ng-model="adjective.chosen" />
+        <h4>{{adj.type}}
+          <input ng-change="toggleAdj(adj)" type="checkbox" name="type" ng-model="adjective.chosen" />
+        </h4>
       </label>
+      <br>
+      <span ng-repeat="item in adj.list">
+        <label>
+          {{item.value}}
+          <input type="checkbox" name="item" ng-model="item.active" ng-change="toggleAdj(adj)">
+        </label>
+      </span>
+      <label>
+        <input type="text" name="addNoun" ng-value="adjToAdd" placeholder="Add new adjective">
+      </label>
+      <button type="button" name="addAdj" ng-click="addAdj(adjToAdd)">Add it!</button>
     </li>
     <h3>Nouns</h3>
     <li ng-repeat="noun in allNounTypes">
       <label>
-        {{noun.type}}
-        <input ng-change="chooseNoun(noun)" type="radio" name="specNoun" ng-model="noun.chosen" value="noun.chosen" />
+        <h4>{{noun.type}}
+          <input ng-change="chooseNoun(noun)" type="radio" name="specNoun" ng-model="noun.chosen" value="noun.chosen" />
+        </h4>
       </label>
+      <br>
+      <span ng-repeat="item in noun.list">
+        <label>
+          {{item.value}}
+          <input type="checkbox" name="item" ng-model="item.active" ng-change="chooseNoun(noun)">
+        </label>
+      </span>
+      <label>
+        <input type="text" name="addNoun" value={{nounToAdd}} placeholder="Add new noun">
+      </label>
+      <button type="button" name="addNoun" ng-click="addNoun(nounToAdd)">Add it!</button>
     </li>
   </ul>
   <ul>
