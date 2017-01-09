@@ -224,7 +224,11 @@ angular.module('presentPickerApp')
     };
 
     $scope.reroll = ()=>{
-
-      $scope.activeNoun = $scope.activeNounObj.list[Math.floor(Math.random() * currNoun.list.length)].value;
+      console.log($scope.activeNoun);
+      $scope.activeNoun = $scope.activeNounObj.list[Math.floor(Math.random() * $scope.activeNounObj.list.length)].value;
+      $scope.activeAdjectiveTypes.forEach((adj)=>{
+        adj.current = adj.list[Math.floor(Math.random() * adj.list.length)].value;
+      });
+      console.log($scope.activeNoun);
     }
   }]);
