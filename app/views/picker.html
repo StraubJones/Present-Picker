@@ -1,6 +1,6 @@
 <div ng-controller="PickerCtrl">
   <p>
-    {{greeting}}! Choose some adjectives and a type of gift you'd like to search for.
+    {{greeting}}! Choose some adjectives and a type of gift you'd like to search for. You can uncheck any options you don't want included!
   </p>
   <ul>
     <h3>Adjectives</h3>
@@ -12,15 +12,13 @@
       </label>
       <br>
       <span ng-repeat="item in adj.list">
-        <label>
+        <label  ng-show="adjective.chosen">
           {{item.value}}
-          <input type="checkbox" name="item" ng-model="item.active" ng-change="toggleAdj(adj)">
+          <input type="checkbox" name="item" ng-model="item.active" ng-change="toggleAdj(adj)" ng-show="adjective.chosen">
         </label>
       </span>
-      <label>
-        <input type="text" name="addNoun" ng-value="adjToAdd" placeholder="Add new adjective">
-      </label>
-      <button type="button" name="addAdj" ng-click="addAdj(adjToAdd)">Add it!</button>
+      <input type="text" name="addAdj" ng-value="adjToAdd" placeholder="Add new adjective"  ng-show="adjective.chosen">
+      <button type="button" name="addAdj" ng-click="addAdj(adjToAdd)" ng-show="adjective.chosen">Add it!</button>
     </li>
     <h3>Nouns</h3>
     <li ng-repeat="noun in allNounTypes">
@@ -31,15 +29,13 @@
       </label>
       <br>
       <span ng-repeat="item in noun.list">
-        <label>
+        <label  ng-show="noun.chosen">
           {{item.value}}
-          <input type="checkbox" name="item" ng-model="item.active" ng-change="chooseNoun(noun)">
+          <input type="checkbox" name="item" ng-model="item.active" ng-change="chooseNoun(noun)" ng-show="noun.chosen">
         </label>
       </span>
-      <label>
-        <input type="text" name="addNoun" value={{nounToAdd}} placeholder="Add new noun">
-      </label>
-      <button type="button" name="addNoun" ng-click="addNoun(nounToAdd)">Add it!</button>
+      <input type="text" name="addNoun" ng-value="nounToAdd" placeholder="Add new noun" ng-show="noun.chosen">
+      <button type="button" name="addNoun" ng-click="addNoun(nounToAdd)" ng-show="noun.chosen">Add it!</button>
     </li>
   </ul>
   <ul>
@@ -47,6 +43,7 @@
     <span ng-repeat="adj in activeAdjectiveTypes">
         {{adj.current}}
     </span>
+    <button type="button" name="reroll" ng-click="reroll()">Reroll!</button>
     <span>
       {{activeNoun}}
     </span>

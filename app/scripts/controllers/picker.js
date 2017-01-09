@@ -222,4 +222,9 @@ angular.module('presentPickerApp')
         active: true
       });
     };
+
+    $scope.reroll = ()=>{
+
+      $scope.activeNoun = $scope.activeNounObj.list[Math.floor(Math.random() * currNoun.list.length)].value;
+    }
   }]);
